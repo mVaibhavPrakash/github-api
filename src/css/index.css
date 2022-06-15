@@ -1,0 +1,23 @@
+html{
+    font-size: 3.382vw;  /* 1rem= 50px */
+  }
+  input:focus, textarea:focus, select:focus{
+    outline: none;
+  }
+  
+  *{
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+    box-sizing: content-box;
+  }
+  
+  .app{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: black;
+  }
+
+  .app-container{
+    flex: 1;
+  }
