@@ -13,6 +13,7 @@ const Landingpage = () => {
   const [state,dispatch]=customHook()
 
   useEffect(() =>{
+  state.isApiResultReady ?  dispatch({type:'Is Fetching'}) : ''
   axios({
       method: 'GET',
       url: `https://api.github.com/users/${state.username}/repos`,
