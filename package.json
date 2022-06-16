@@ -1,15 +1,22 @@
 {
-  "name": "antstack_assignment",
+  "homepae": "https://mvaibhavprakash.github.io/github-api",
+  "name": "antstack",
   "version": "1.0.0",
   "description": "AntStack App",
-  "main": "webpack.config.js",
+  "main": "webpack.config.js","browserslist": [
+    "edge 16",
+    "chrome 102"
+  ],
   "scripts": {
     "start": "webpack serve --config  webpack.config.js  --env env=dev",
-    "build": "webpack --config webpack.config.js --env env=prod"
+    "build": "webpack --config webpack.config.js --env env=prod",
+    "create": "react-scripts build",
+    "predeploy": "npm run create",
+    "deploy": "gh-pages -d create"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mVaibhavPrakash/AntStack.git"
+    "url": "git+https://github.com/mVaibhavPrakash/github-api.git"
   },
   "author": "",
   "license": "ISC",
@@ -47,10 +54,12 @@
     "@fortawesome/react-fontawesome": "^0.1.17",
     "@reduxjs/toolkit": "^1.8.1",
     "axios": "^0.26.1",
+    "gh-pages": "^4.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-query": "^4.0.0-beta.2",
     "react-redux": "^7.2.8",
-    "react-router-dom": "^6.3.0"
+    "react-router-dom": "^6.3.0",
+    "react-scripts": "^5.0.1"
   }
 }
