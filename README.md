@@ -1,3 +1,3 @@
 # github-api
 
-[https://boisterous-hotteok-bb4b57.netlify.app/](WebSite)
+[Duck Duck Go](https://boisterous-hotteok-bb4b57.netlify.app/)
