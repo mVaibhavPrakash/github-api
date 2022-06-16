@@ -10,9 +10,8 @@
   "scripts": {
     "start": "webpack serve --config  webpack.config.js  --env env=dev",
     "build": "webpack --config webpack.config.js --env env=prod",
-    "create": "react-scripts build",
-    "predeploy": "npm run create",
-    "deploy": "gh-pages -d create"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "repository": {
     "type": "git",
