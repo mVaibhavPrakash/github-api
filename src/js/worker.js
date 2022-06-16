@@ -7,7 +7,7 @@ export default () => {
     const result = data.sort((a, b) => {
       return ('' + a.name).localeCompare(b.name);
     });
-
+    console.log(result);
     postMessage(result);
   });
 };
