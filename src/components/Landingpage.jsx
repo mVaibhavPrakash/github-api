@@ -13,7 +13,6 @@ const Landingpage = () => {
   const [state,dispatch]=customHook()
 
   useEffect(() =>{
-  state.isApiResultReady ?  dispatch({type:'Is Fetching'}) : ''
   axios({
       method: 'GET',
       url: `https://api.github.com/users/${state.username}/repos`,
@@ -41,7 +40,7 @@ const Landingpage = () => {
         <div className='lpage'>
           <div className='some'>
             <input id='search' placeholder='Enter username to search' type='text' value={state.formInput} onChange={(e) => dispatch({type:'Form Input',payload:e.target.value})}/>
-            <button id='search-btn' onClick={e => dispatch({type:'Set Username',payload:state.formInput})}>Search User</button>
+            <button id='search-btn' onClick={e =>{ dispatch({type:'Set Username',payload:state.formInput});dispatch({type:'Is Fetching'})}}>Search User</button>
           </div>
         </div>
       </div>
