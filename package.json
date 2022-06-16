@@ -3,10 +3,6 @@
   "name": "antstack",
   "version": "1.0.0",
   "description": "AntStack App",
-  "main": "webpack.config.js","browserslist": [
-    "edge 16",
-    "chrome 102"
-  ],
   "scripts": {
     "start": "webpack serve --config  webpack.config.js  --env env=dev",
     "build": "webpack --config webpack.config.js --env env=prod",
@@ -20,9 +16,9 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mVaibhavPrakash/AntStack/issues"
+    "url": "https://github.com/mVaibhavPrakash/github-api/issues"
   },
-  "homepage": "https://github.com/mVaibhavPrakash/AntStack#readme",
+  "homepage": "https://github.com/mVaibhavPrakash/ithub-api#readme",
   "devDependencies": {
     "@babel/core": "^7.17.0",
     "@babel/plugin-transform-runtime": "^7.17.0",
@@ -34,6 +30,7 @@
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.6.0",
     "file-loader": "^6.2.0",
+    "gh-pages": "^4.0.0",
     "html-webpack-plugin": "^5.5.0",
     "husky": "^7.0.4",
     "mini-css-extract-plugin": "^2.5.3",
@@ -53,12 +50,11 @@
     "@fortawesome/react-fontawesome": "^0.1.17",
     "@reduxjs/toolkit": "^1.8.1",
     "axios": "^0.26.1",
-    "gh-pages": "^4.0.0",
+    "ghpages": "^0.0.10",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-query": "^4.0.0-beta.2",
     "react-redux": "^7.2.8",
-    "react-router-dom": "^6.3.0",
-    "react-scripts": "^5.0.1"
+    "react-router-dom": "^6.3.0"
   }
 }
