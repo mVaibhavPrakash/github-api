@@ -23,6 +23,7 @@ const Landingpage = () => {
             worke.addEventListener("message", event => {
               dispatch({type:'Result',payload:event.data})
             });
+            if(!state.isApiResultReady)
             dispatch({type:'Is Fetching'})
           }
           else{
