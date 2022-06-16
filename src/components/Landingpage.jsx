@@ -13,7 +13,7 @@ const Landingpage = () => {
   const [state,dispatch]=customHook()
 
   useEffect(() =>{
-  state.isApiResultReady ?  dispatch({type:'Is Fetching'}) : ''
+  !state.isApiResultReady ?  dispatch({type:'Is Fetching'}) : ''
   axios({
       method: 'GET',
       url: `https://api.github.com/users/${state.username}/repos`,
@@ -24,7 +24,7 @@ const Landingpage = () => {
             worke.addEventListener("message", event => {
               dispatch({type:'Result',payload:event.data})
             });
-            if(!state.isApiResultReady)
+            if(state.isApiResultReady)
             dispatch({type:'Is Fetching'})
           }
           else{
