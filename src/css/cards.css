@@ -1,5 +1,6 @@
 .cards{
     width:70vw;
+    box-sizing: border-box;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(3,1fr);

@@ -1,40 +1,64 @@
 .card{
     font-size: 0.2rem;
+    box-sizing: border-box;
     box-shadow: 0 1px 2px white;
-    padding-left: 10%;
-    padding-right: 10%;
+    padding: 10px 5%;
     margin-right: 5%;
     margin-bottom: 5%;
     word-wrap: break-word;
-    background-color: rgb(23, 21, 21);
-    color: whitesmoke;
+    background-color: white;
+    color: black;
     border-radius: 10px;
 }
 
-.card_repo{
-    font-size: 0.40rem;
-    padding-top: 0.1rem;
-    padding-bottom: 0.1rem;
+.card-repo{
+    font-size: 0.5rem;
     text-align: center;
-    color: #182b81;
+    cursor: pointer;
+    color: black;
 }
 
-.card_lang{
-    font-size: 0.33rem;
+#break{
+    border-bottom: 1px solid black;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.card-lang{
+    font-size: 0.4rem;
     padding-bottom: 0.30rem;
-    color: #8080bd;
+    margin-top: 15px;
+    margin-bottom:15px;
+    color: rgb(29, 3, 121);
 }
 
-.card_star{
-    margin-top: 0.15rem;
+.card-star{
+    padding-bottom: 0.15rem;
+    font-size: 0.5rem;
+    margin-left: 0.5rem;
+    color:#4fe0c0;
+}
+
+.card-fork{
     padding-bottom: 0.15rem;
     font-size: 0.5rem;
     color:#4fe0c0;
 }
 
-.card_forks{
-    margin-top: 0.15rem;
-    padding-bottom: 0.15rem;
-    font-size: 0.5rem;
-    color:#4fe0c0;
+@media only screen and (max-width: 600px)  {
+    .card-repo{
+        font-size: 0.9rem;
+    }
+
+    .card-lang{
+        font-size: 0.75rem;
+    }
+
+    #img{
+        height: 75px;
+    }
+
+    .card-star{
+        margin-left: 00.8rem;
+    }
 }

@@ -3,7 +3,7 @@ const customHook = () =>{
     const [state, dispatch] = useReducer(Reducer,{
         username :'mvaibhavprakash',
         isApiResultReady : false,
-        apiResult : '',
+        apiResult : [],
         error :''
     })
 

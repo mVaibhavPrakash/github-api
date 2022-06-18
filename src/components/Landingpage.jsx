@@ -6,6 +6,7 @@ import customHook from '../js/customHook';
 import '../css/landingpage.css'
 import worker from "../js/worker.js";
 import WebWorker from "../js/workerSetup";
+import { Link } from 'react-router-dom';
 
 const Landingpage = () => {
 
@@ -14,8 +15,11 @@ const Landingpage = () => {
 
   useEffect(() =>{
   axios({
-      method: 'GET',
-      url: `https://api.github.com/users/${state.username}/repos`,
+      method: 'POST',
+      url: `http://localhost:8082/username`,
+      data: {
+        username: state.username
+      }
     }).then((res) => {
           if(res.status===200){
             const result = res.data
@@ -27,9 +31,11 @@ const Landingpage = () => {
             dispatch({type:'Is Fetching'})
           }
           else{
+            !state.isApiResultReady ? dispatch({type:'Is Fetching'}) : null
             dispatch({type:'Error'})
           }
     }).catch((err) =>{
+      !state.isApiResultReady ? dispatch({type:'Is Fetching'}) : null
           dispatch({type:'Error'})
     })
   },[state.username])
@@ -40,19 +46,34 @@ const Landingpage = () => {
         <div className='lpage'>
           <div className='some'>
             <input id='search' placeholder='Enter username to search' type='text' value={state.formInput} onChange={(e) => dispatch({type:'Form Input',payload:e.target.value})}/>
-            <button id='search-btn' onClick={e =>{ dispatch({type:'Set Username',payload:state.formInput});dispatch({type:'Is Fetching'})}}>Search User</button>
+            <button id='search-btn' onClick={e =>{ dispatch({type:'Set Username',payload:state.formInput});dispatch({type:'Is Fetching'});dispatch({type:'Form Input',payload:''})}}>Search User</button>
+            <Link to={'/all'} >All</Link>
+            <Link to={'/chart'}>Chart</Link>
           </div>
         </div>
       </div>
 
       {state.error ? <p id='error'>{state.error}</p> : ''}
+    {state.isApiResultReady ? 
+        state.apiResult.map((entry,index) =>{
+            return <div key={entry.id}>
+            <img id='img' src={`https://ghchart.rshah.org/${entry.username}`} loading='lazy'/>
+              <div className='parent'>
+                  <a className='username' href={`https://github.com/${entry.username}`}>{state.username}</a>
+                  <Cards data={entry.repositories}/>
+              </div>
+            </div>
+        }) : 
+        <Spinner/>
+    }
+
       {
-      state.isApiResultReady ? 
+      /*state.isApiResultReady ? 
         <>
           <img id='img' src={`https://ghchart.rshah.org/${state.username}`} loading='lazy'/>
-          <Cards data={state.apiResult}/>
+          <Cards data={state.apiResult.repositories}/>
         </> : 
-        <Spinner/>
+        <Spinner/>*/
       }
   </>
   )
