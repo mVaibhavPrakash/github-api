@@ -48,8 +48,8 @@ const Landingpage = () => {
           <div className='some'>
             <input id='search' placeholder='Enter username to search' type='text' value={state.formInput} onChange={(e) => dispatch({type:'Form Input',payload:e.target.value})}/>
             <button id='search-btn' onClick={e =>{ dispatch({type:'Set Username',payload:state.formInput});dispatch({type:'Is Fetching'});dispatch({type:'Form Input',payload:''})}}>Search User</button>
-            <Link to={'/all'} style={{lineHeight:'100px',marginLeft:'12.5vw',marginRight:'12.5vw'}} >All</Link>
-            <Link to={'/chart'}>Chart</Link>
+            <Link to={'/all'} style={{lineHeight:'100px',marginLeft:'7.5vw',marginRight:'12.5vw'}} >All User Data</Link>
+            <Link to={'/chart'}>Bar Chart</Link>
           </div>
         </div>
       </div>
@@ -58,7 +58,10 @@ const Landingpage = () => {
     {state.isApiResultReady ? 
         state.apiResult.map((entry,index) =>{
             return <div key={entry.id}>
+
+              {/* Lazy loading image */}
             <img id='img' src={`https://ghchart.rshah.org/${entry.username}`} loading='lazy'/>
+              
               <div className='parent'>
                   <a className='username' href={`https://github.com/${entry.username}`}>{state.username}</a>
                   <Cards data={entry.repositories}/>
@@ -67,15 +70,6 @@ const Landingpage = () => {
         }) : 
         <Spinner/>
     }
-
-      {
-      /*state.isApiResultReady ? 
-        <>
-          <img id='img' src={`https://ghchart.rshah.org/${state.username}`} loading='lazy'/>
-          <Cards data={state.apiResult.repositories}/>
-        </> : 
-        <Spinner/>*/
-      }
   </>
   )
 };

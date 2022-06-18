@@ -21,7 +21,9 @@ const Secondpage = () => {
       }).then((res) => {
             if(res.status===200){
               const result = res.data
-              console.log(result)
+
+              //Worker thread for complex tasks, like sorting
+              
               worke.postMessage(result)
               worke.addEventListener("message", event => {
                 dispatch({type:'Result',payload:event.data})
@@ -39,8 +41,8 @@ const Secondpage = () => {
   return (
     <>
       <div style={{width:'100vw',height:'100px',borderBottom:'1px solid white',}}>
-          <Link style={{lineHeight:'100px',marginLeft:'12.5vw',marginRight:'12.5vw'}} to={'/'}>First Page</Link>
-          <Link to={'/chart'}>Chart</Link>
+          <Link style={{lineHeight:'100px',marginLeft:'12.5vw',marginRight:'12.5vw'}} to={'/'}>Single User Data</Link>
+          <Link to={'/chart'}>Bar Chart</Link>
       </div>
       {state.error ? <p style={{marginTop:'50px',marginLeft:'50px',fontSize:'0.6rem'}}>{state.error}</p>:''}
       {

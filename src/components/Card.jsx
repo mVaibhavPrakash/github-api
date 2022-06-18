@@ -8,8 +8,8 @@ const Card = ({repository_name,url,language,stars_count,forks_count}) => {
         <a className='card-repo' target='_blank' href={url}>{repository_name}</a>
         <p id='break'></p>
         <p className='card-lang'>{language ? language : 'Dart'}</p>
-        <span className='card-fork'><FontAwesomeIcon icon={faCodeFork}/>{forks_count}</span>
-        <span className='card-star'><FontAwesomeIcon icon={faStar}/>{stars_count}</span>
+        <span className='card-fork' title='fork_count'><FontAwesomeIcon icon={faCodeFork}/>{forks_count}</span>
+        <span className='card-star' title='star_count'><FontAwesomeIcon icon={faStar}/>{stars_count}</span>
     </div>
   )
 }
