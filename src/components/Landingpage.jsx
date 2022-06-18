@@ -16,7 +16,7 @@ const Landingpage = () => {
   useEffect(() =>{
   axios({
       method: 'POST',
-      url: `http://localhost:8082/username`,
+      url: `https://github-api-back.herokuapp.com/username`,
       data: {
         username: state.username
       }
