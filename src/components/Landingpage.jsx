@@ -63,7 +63,7 @@ const Landingpage = () => {
             <img id='img' src={`https://ghchart.rshah.org/${entry.username}`} loading='lazy'/>
               
               <div className='parent'>
-                  <a className='username' href={`https://github.com/${entry.username}`}>{state.username}</a>
+                  <a className='username' target='_blank' href={`https://github.com/${entry.username}`}>{state.username}</a>
                   <Cards data={entry.repositories}/>
               </div>
             </div>
