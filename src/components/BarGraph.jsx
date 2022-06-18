@@ -17,7 +17,7 @@ const BarGraph = () => {
         }
         !one ? axios({
             method: 'GET',
-            url: `https://github-api-back.herokuapp.com/chart`,
+            url: `http://localhost:8082/chart`,
           }).then((res) =>{
             if(res.status === 200){
                 const response = res.data;

@@ -17,7 +17,7 @@ const Secondpage = () => {
     console.log(state.apiResult)
     axios({
         method: 'GET',
-        url: `https://github-api-back.herokuapp.com/getall`,
+        url: `http://localhost:8082/getall`,
       }).then((res) => {
             if(res.status===200){
               const result = res.data

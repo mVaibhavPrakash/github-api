@@ -16,10 +16,11 @@ const Landingpage = () => {
   useEffect(() =>{
   axios({
       method: 'POST',
-      url: `https://github-api-back.herokuapp.com/username`,
+      url: `http://localhost:8082/username`,
       data: {
         username: state.username
-      }
+      },
+      withCredentials:true
     }).then((res) => {
           if(res.status===200){
             const result = res.data
@@ -47,7 +48,7 @@ const Landingpage = () => {
           <div className='some'>
             <input id='search' placeholder='Enter username to search' type='text' value={state.formInput} onChange={(e) => dispatch({type:'Form Input',payload:e.target.value})}/>
             <button id='search-btn' onClick={e =>{ dispatch({type:'Set Username',payload:state.formInput});dispatch({type:'Is Fetching'});dispatch({type:'Form Input',payload:''})}}>Search User</button>
-            <Link to={'/all'} >All</Link>
+            <Link to={'/all'} style={{lineHeight:'100px',marginLeft:'12.5vw',marginRight:'12.5vw'}} >All</Link>
             <Link to={'/chart'}>Chart</Link>
           </div>
         </div>
