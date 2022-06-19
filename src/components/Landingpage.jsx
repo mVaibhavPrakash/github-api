@@ -39,7 +39,7 @@ const Landingpage = () => {
       state.isApiResultReady ? 
         state.apiResult.map((entry,index) =>{
               
-          return <div key={entry.id}>
+          return <div key={entry._id}>
 
             {/* Lazy loading image */}
               <img id='img' src={`https://ghchart.rshah.org/${entry.username}`} loading='lazy'/>

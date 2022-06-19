@@ -32,7 +32,7 @@ const Secondpage = () => {
           <>
             {
             state.apiResult.map((entry,index) =>{
-            return <div className='parent' key={entry.id}>
+            return <div className='parent' key={entry._id}>
                   <a className='username' target='_blank' href={`https://github.com/${entry.username}`}>{entry.username}</a>
                   <Cards data={entry.repositories}/>
               </div>
