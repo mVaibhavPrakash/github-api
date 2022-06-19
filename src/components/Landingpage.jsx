@@ -1,5 +1,4 @@
-import React,{ useEffect,useState} from 'react';
-import axios from 'axios'
+import React,{ useEffect} from 'react';
 import Cards from './Cards';
 import Spinner from './Spinner'
 import customHook from '../js/customHook';
@@ -7,38 +6,15 @@ import '../css/landingpage.css'
 import worker from "../js/worker.js";
 import WebWorker from "../js/workerSetup";
 import { Link } from 'react-router-dom';
+import { UserApiCall } from '../js/axios';
 
 const Landingpage = () => {
 
-  const worke = new WebWorker(worker);
+  const work = new WebWorker(worker);
   const [state,dispatch]=customHook()
 
   useEffect(() =>{
-  axios({
-      method: 'POST',
-      url: `http://localhost:8082/username`,
-      data: {
-        username: state.username
-      },
-      withCredentials:true
-    }).then((res) => {
-          if(res.status===200){
-            const result = res.data
-            worke.postMessage(result)
-            worke.addEventListener("message", event => {
-              dispatch({type:'Result',payload:event.data})
-            });
-            if(!state.isApiResultReady)
-            dispatch({type:'Is Fetching'})
-          }
-          else{
-            !state.isApiResultReady ? dispatch({type:'Is Fetching'}) : null
-            dispatch({type:'Error'})
-          }
-    }).catch((err) =>{
-      !state.isApiResultReady ? dispatch({type:'Is Fetching'}) : null
-          dispatch({type:'Error'})
-    })
+    UserApiCall(state,dispatch,work);
   },[state.username])
 
   return(
@@ -54,21 +30,27 @@ const Landingpage = () => {
         </div>
       </div>
 
-      {state.error ? <p id='error'>{state.error}</p> : ''}
-    {state.isApiResultReady ? 
-        state.apiResult.map((entry,index) =>{
-            return <div key={entry.id}>
+    {
+      /*Error handling for API thrown error */
+      state.error ? <p id='error'>{state.error}</p> : ''
+    }
 
-              {/* Lazy loading image */}
-            <img id='img' src={`https://ghchart.rshah.org/${entry.username}`} loading='lazy'/>
+    {
+      state.isApiResultReady ? 
+        state.apiResult.map((entry,index) =>{
               
-              <div className='parent'>
-                  <a className='username' target='_blank' href={`https://github.com/${entry.username}`}>{state.username}</a>
-                  <Cards data={entry.repositories}/>
+          return <div key={entry.id}>
+
+            {/* Lazy loading image */}
+              <img id='img' src={`https://ghchart.rshah.org/${entry.username}`} loading='lazy'/>
+                
+                <div className='parent'>
+                    <a className='username' target='_blank' href={`https://github.com/${entry.username}`}>{state.username}</a>
+                    <Cards data={entry.repositories}/>
+                </div>
               </div>
-            </div>
-        }) : 
-        <Spinner/>
+          }) : 
+          <Spinner/>
     }
   </>
   )
