@@ -2,6 +2,7 @@ import { useReducer } from "react";
 const customHook = () =>{
     const [state, dispatch] = useReducer(Reducer,{
         username :'mvaibhavprakash',
+        profile : '',
         isApiResultReady : false,
         apiResult : [],
         error :''
@@ -12,6 +13,8 @@ const customHook = () =>{
 
 const Reducer = (state,action) =>{
     switch (action.type) {
+        case 'Set Profile' :
+            return {...state, profile:action.payload}
         case 'Set Username':
             return {...state,username:action.payload}
         case 'Form Input':

@@ -1,18 +1,25 @@
 import axios from 'axios';
+import { CreateProfile } from './profile';
+
+export const UserProfile = (state, dispatch) => {
+  axios({
+    method: 'GET',
+    url: `https://api.github.com/users/${state.username}`,
+  }).then((res) => {
+    console.log(res);
+    CreateProfile(res.data, state, dispatch);
+  });
+};
 
 export const UserApiCall = (state, dispatch, worker) => {
   axios({
-    method: 'POST',
-    url: `http://localhost:8082/username`,
-    data: {
-      username: state.username,
-    },
-    withCredentials: true,
+    method: 'GET',
+    url: `https://api.github.com/users/${state.username}/repos`,
   })
     .then((res) => {
       if (res.status === 200) {
         const result = res.data;
-
+        console.log(result);
         //Worker thread for complex tasks, like sorting
         worker.postMessage(result);
         worker.addEventListener('message', (event) => {
@@ -31,14 +38,15 @@ export const UserApiCall = (state, dispatch, worker) => {
     });
 };
 
-export const AllUserApiCall = (dispatch, worker,state) => {
+export const AllUserApiCall = (dispatch, worker, state) => {
   axios({
     method: 'GET',
-    url: `http://localhost:8082/getall`,
+    url: `https://api.github.com/users/${username}/repos`,
   })
     .then((res) => {
       if (res.status === 200) {
         const result = res.data;
+        console.log(res);
 
         //Worker thread for complex tasks, like sorting
 

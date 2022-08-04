@@ -3,17 +3,18 @@ export default () => {
     if (!e) return;
 
     const data = e.data;
-
     /* Condition for handling sigle as well as multiple users data */
-    if (Array.isArray(data)) {
-      const result = data.sort((a, b) => {
-        return b.repositories.length - a.repositories.length;
-      });
-      postMessage(result);
-    } else {
-      const res = [];
-      res.push(data);
-      postMessage(res);
-    }
+    const result = data.filter((a) => {
+      return {
+        html_url: a.html_url,
+        repository_name: a.name,
+        url: a.html_url,
+        key: a.id,
+        language: a.language,
+        forks_count: a.forks,
+        stars_count: a.stargazers_count,
+      };
+    });
+    postMessage(result);
   });
 };
